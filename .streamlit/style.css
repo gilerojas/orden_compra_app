@@ -1,0 +1,50 @@
+/* Orden de Compra - Identidad visual distinta a Orden de Despacho */
+
+/* Banner superior de identificación */
+[data-testid="stAppViewContainer"] {
+    background: linear-gradient(180deg, #F0FDFA 0%, #FFFBEB 100%);
+}
+
+/* Sidebar con color de marca (teal suave) */
+[data-testid="stSidebar"] {
+    background: linear-gradient(180deg, #CCFBF1 0%, #FEF3C7 100%);
+    border-right: 3px solid #0D9488;
+}
+
+/* Títulos principales con color teal */
+h1 {
+    color: #0F766E !important;
+    border-bottom: 2px solid #14B8A6;
+    padding-bottom: 0.25rem;
+}
+
+/* Botones primarios más visibles como "compras" */
+.stButton > button[kind="primary"] {
+    background: linear-gradient(135deg, #0D9488 0%, #059669 100%) !important;
+    color: white !important;
+    border: none !important;
+    font-weight: 600 !important;
+}
+
+.stButton > button[kind="primary"]:hover {
+    background: linear-gradient(135deg, #0F766E 0%, #047857 100%) !important;
+    border: none !important;
+}
+
+/* File uploader con borde teal */
+[data-testid="stFileUploader"] {
+    border: 2px dashed #14B8A6;
+    border-radius: 8px;
+    padding: 1rem;
+    background-color: #F0FDFA;
+}
+
+/* Métricas / cards con fondo suave */
+[data-testid="stMetricValue"] {
+    color: #0F766E !important;
+}
+
+/* Mensajes de éxito en tono teal */
+[data-testid="stAlert"] div[data-baseweb="notification"] {
+    border-left: 4px solid #0D9488;
+}

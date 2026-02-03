@@ -1,0 +1,63 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Streamlit
+.streamlit/secrets.toml
+
+# Credenciales y env (nunca subir a GitHub)
+.env
+.env.*
+secrets_gsheets.json
+secrets_*.json
+*idyllic-striker*.json
+*.json.key
+
+# Datos
+data/raw/*
+data/processed/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+
+# Logs
+logs/*
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# PDFs de prueba (opcional, descomentar si no quieres subir PDFs)
+# *.pdf

@@ -1,0 +1,14 @@
+[theme]
+# Orden de Compra: identidad teal/ámbar (distinta a Orden de Despacho que usa púrpura/rosa)
+primaryColor = "#0D9488"
+backgroundColor = "#FFFBEB"
+secondaryBackgroundColor = "#FEF3C7"
+textColor = "#1E293B"
+font = "sans serif"
+
+[server]
+headless = true
+port = 8501
+
+[browser]
+gatherUsageStats = false
