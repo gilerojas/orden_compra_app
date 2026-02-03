@@ -61,3 +61,4 @@ Thumbs.db
 
 # PDFs de prueba (opcional, descomentar si no quieres subir PDFs)
 # *.pdf
+credentials/

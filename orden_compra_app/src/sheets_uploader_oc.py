@@ -129,17 +129,17 @@ def _get_credentials():
     ]
     
     try:
-        # Intenta importar streamlit (solo disponible si está instalado)
         import streamlit as st
-        
-        # Si existe st.secrets["gcp_service_account"], usar eso
         if "gcp_service_account" in st.secrets:
+            sa = st.secrets["gcp_service_account"]
+            if isinstance(sa, str):
+                import json
+                sa = json.loads(sa)
+            else:
+                sa = dict(sa)
             print("✅ Usando credenciales de Streamlit Secrets (producción)")
-            return Credentials.from_service_account_info(
-                st.secrets["gcp_service_account"],
-                scopes=SCOPES
-            )
-    except (ImportError, FileNotFoundError, KeyError):
+            return Credentials.from_service_account_info(sa, scopes=SCOPES)
+    except (ImportError, KeyError, TypeError, ValueError) as e:
         pass
     
     # Fallback: usar archivo local (buscar nuevo archivo primero)

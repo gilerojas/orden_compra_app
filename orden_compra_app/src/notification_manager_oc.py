@@ -48,9 +48,25 @@ def _load_dotenv_multiple_paths():
 
 def _get_credentials() -> Dict[str, str]:
     """
-    Obtiene credenciales WaSender solo desde .env (sin tocar st.secrets).
-    Evita el error "No secrets found" cuando no existe secrets.toml.
+    Obtiene credenciales WaSender: st.secrets (Cloud / secrets.toml) o .env (local).
     """
+    # Primero intentar st.secrets (Cloud o local con secrets.toml rellenado)
+    try:
+        import streamlit as st
+        if hasattr(st, "secrets") and st.secrets is not None and "wasender" in st.secrets:
+            w = st.secrets["wasender"]
+            # Convertir a dict si es AttrDict u otro mapping; luego leer api_key y grupo_oc_id
+            if hasattr(w, "items"):
+                w = dict(w)
+            api_key = (w.get("api_key") if isinstance(w, dict) else getattr(w, "api_key", "")) or ""
+            grupo_oc_id = (w.get("grupo_oc_id") if isinstance(w, dict) else getattr(w, "grupo_oc_id", "")) or GRUPO_OC_TEST_DEFAULT
+            api_key = str(api_key).strip()
+            grupo_oc_id = str(grupo_oc_id).strip() or GRUPO_OC_TEST_DEFAULT
+            if api_key:
+                return {"api_key": api_key, "grupo_oc_id": grupo_oc_id}
+    except Exception:
+        pass
+    # Fallback: .env (local)
     _load_dotenv_multiple_paths()
     api_key = (os.getenv("WASENDER_API_KEY") or "").strip()
     grupo_oc_id = (os.getenv("GRUPO_OC_ID") or GRUPO_OC_TEST_DEFAULT).strip()
